@@ -16,7 +16,7 @@ module.exports.loop = function () {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     
-    if(harvesters.length < harvesterCount && upgraders.length < upgraderCount) {
+    if(harvesters.length < harvesterCount || upgraders.length < upgraderCount) {
         if(harvesters.length <  upgraders.length){
             roleHarvester.init();
         }
