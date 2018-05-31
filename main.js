@@ -1,10 +1,9 @@
+var roleHarvester = require('role.harvester');
+
 module.exports.loop = function () {
-  Object.keys(Game.creeps).forEach((name) => {
-    const creep = Game.creeps[name];
-    if (creep.memory.role === 'harvester') {
-      // do harvesting things
-    } else if (creep.memory.role === 'upgrader') {
-      // upgrade the room
+
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        roleHarvester.run(creep);
     }
-  });
-};
+}
