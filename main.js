@@ -3,6 +3,13 @@ var roleUpgrader = require('role.upgrader');
 var harvesterCount = 20;
 var upgraderCount = 20;
 
+var createCreep = {
+	"harvester": false,
+	"upgrader": false,
+	"claimer": false,
+	"protector": false
+}
+
 module.exports.loop = function () {
 
     // Cleaning up the memory clugs
@@ -15,14 +22,36 @@ module.exports.loop = function () {
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
+
+    if(harvesters.length < harvesterCount) {
+    	createCreep['harvester'] = true;
+    }
+    if(upgraders.length < upgraderCount) {
+    	createCreep['upgrader'] = true;
+    }
+    if(claimers.length + 1 < Game.gcl.level) {
+    	createCreep['claimer'] = true;
+    }
     
-    if(harvesters.length < harvesterCount || upgraders.length < upgraderCount) {
-        if(harvesters.length <  upgraders.length){
-            roleHarvester.init();
+    
+    if((harvesters.length <  upgraders.length) && createCreep['harvester']){
+        roleHarvester.init();
+        if (harvesters.length === harvesterCount) {
+        	createCreep['harvester'] = false;
         }
-        else{
-            roleUpgrader.init();
-        }        
+    }
+    if (createCreep['upgrader'] === true){
+        roleUpgrader.init();
+        if (harvesters.length === upgraderCount) {
+        	createCreep['upgrader'] = false;
+        }
+    }
+    if (createCreep['claimer'] === true){
+        roleUpgrader.init();
+        if (harvesters.length === Game.gcl.level) {
+        	createCreep['claimer'] = false;
+        }
     }
  
     if(Game.spawns['Spawn1'].spawning) { 
