@@ -1,4 +1,4 @@
-names = require('./utils/names');
+
 /** @param {Creep} creep **/
 function run(creep) {
     if(creep.carry.energy < creep.carryCapacity) {
@@ -19,7 +19,7 @@ function init(name, spawn) {
         spawn = 'Spawn1';
     }
     if (!name) {
-        name = names[Math.floor(Math.random() * names.length)] + names[Math.floor(Math.random() * names.length)];
+        name = 'Harvester' + Game.time;
     }
     Game.spawns[spawn].spawnCreep( [WORK, CARRY, MOVE], name )
 }
