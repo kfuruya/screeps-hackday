@@ -43,7 +43,7 @@ module.exports.loop = function () {
     }
     if (createCreep['upgrader'] === true){
         roleUpgrader.init();
-        if (harvesters.length === upgraderCount) {
+        if (upgraders.length === upgraderCount) {
         	createCreep['upgrader'] = false;
         }
     }
