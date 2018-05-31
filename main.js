@@ -1,7 +1,8 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var roleClaimer = require('role.claimer');
 var harvesterCount = 20;
-var upgraderCount = 20;
+var upgraderCount = 10;
 
 var createCreep = {
 	"harvester": false,
@@ -35,21 +36,21 @@ module.exports.loop = function () {
     }
     
     
-    if((harvesters.length <  upgraders.length) && createCreep['harvester']){
+    if((harvesters.length/2 <  upgraders.length) && createCreep['harvester']){
         roleHarvester.init();
         if (harvesters.length === harvesterCount) {
         	createCreep['harvester'] = false;
         }
     }
-    if (createCreep['upgrader'] === true){
+    else if (createCreep['upgrader'] === true){
         roleUpgrader.init();
-        if (harvesters.length === upgraderCount) {
+        if (upgraders.length === upgraderCount) {
         	createCreep['upgrader'] = false;
         }
     }
-    if (createCreep['claimer'] === true){
-        roleUpgrader.init();
-        if (harvesters.length === Game.gcl.level) {
+    else if (createCreep['claimer'] === true){
+        roleClaimer.init();
+        if (claimers.length === Game.gcl.level) {
         	createCreep['claimer'] = false;
         }
     }
