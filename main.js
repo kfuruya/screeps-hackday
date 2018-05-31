@@ -1,4 +1,6 @@
 var roleHarvester = require('role.harvester');
+roleHarvester.init();
+
 var roleUpgrader = require('role.upgrader');
 var harvesterCount = 2;
 var upgraderCount = 1;
