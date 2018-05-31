@@ -1,4 +1,3 @@
-names = require('./utils/names');
 /** @param {Creep} creep **/
 function run(creep) {
     // attacks all creeps that have an ATTACK body part
@@ -7,6 +6,11 @@ function run(creep) {
             return object.getActiveBodyparts(ATTACK) !== 0;
         }
     });
+    if ((target) || target.getActiveBodyparts(RANGED_ATTACK) !== 0){
+        if(creep.attack(target) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target);
+        }
+    };
 };
 
 function init(name, spawn) {
