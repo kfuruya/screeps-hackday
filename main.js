@@ -31,7 +31,7 @@ module.exports.loop = function () {
     	createCreep['upgrader'] = true;
     }
     if(claimers.length + 1 < Game.gcl.level) {
-    	createCreep['upgrader'] = true;
+    	createCreep['claimer'] = true;
     }
     
     
