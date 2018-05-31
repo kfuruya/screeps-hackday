@@ -21,7 +21,7 @@ function init(name, spawn) {
     if (!name) {
         name = 'Harvester' + Game.time;
     }
-    Game.spawns[spawn].spawnCreep( [WORK, CARRY, MOVE], name )
+    Game.spawns[spawn].spawnCreep( [WORK, CARRY, MOVE], name, {memory: {role: 'harvester'}} )
 }
 
 module.exports = {run, init};
