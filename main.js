@@ -43,16 +43,17 @@ module.exports.loop = function () {
     }
     else if (createCreep['upgrader'] === true){
         roleUpgrader.init();
-        if (harvesters.length === upgraderCount) {
+        if (upgraders.length === upgraderCount) {
         	createCreep['upgrader'] = false;
         }
     }
-    else if (createCreep['claimer'] === true){
-        roleUpgrader.init();
-        if (harvesters.length === Game.gcl.level) {
-        	createCreep['claimer'] = false;
-        }
-    }
+    // TODO - replace with new claimer screep
+    // else if (createCreep['claimer'] === true){
+    //     roleUpgrader.init();
+    //     if (harvesters.length === Game.gcl.level) {
+    //     	createCreep['claimer'] = false;
+    //     }
+    // }
  
     if(Game.spawns['Spawn1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
