@@ -1,5 +1,6 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var roleClaimer = require('role.claimer');
 var harvesterCount = 20;
 var upgraderCount = 10;
 
@@ -47,13 +48,12 @@ module.exports.loop = function () {
         	createCreep['upgrader'] = false;
         }
     }
-    // TODO - replace with new claimer screep
-    // else if (createCreep['claimer'] === true){
-    //     roleUpgrader.init();
-    //     if (harvesters.length === Game.gcl.level) {
-    //     	createCreep['claimer'] = false;
-    //     }
-    // }
+    else if (createCreep['claimer'] === true){
+        roleClaimer.init();
+        if (harvesters.length === Game.gcl.level) {
+        	createCreep['claimer'] = false;
+        }
+    }
  
     if(Game.spawns['Spawn1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
